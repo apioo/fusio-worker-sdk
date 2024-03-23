@@ -54,14 +54,16 @@ class Client extends ClientAbstract
     }
 
     /**
+     * @param string $action
      * @param Execute $payload
      * @return Response
      * @throws MessageException
      * @throws ClientException
      */
-    public function execute(Execute $payload): Response
+    public function execute(string $action, Execute $payload): Response
     {
         $url = $this->parser->url('/:action', [
+            'action' => $action,
         ]);
 
         $options = [
@@ -95,14 +97,16 @@ class Client extends ClientAbstract
     }
 
     /**
+     * @param string $action
      * @param Update $payload
      * @return Message
      * @throws MessageException
      * @throws ClientException
      */
-    public function put(Update $payload): Message
+    public function put(string $action, Update $payload): Message
     {
         $url = $this->parser->url('/:action', [
+            'action' => $action,
         ]);
 
         $options = [
@@ -134,13 +138,15 @@ class Client extends ClientAbstract
     }
 
     /**
+     * @param string $action
      * @return Message
      * @throws MessageException
      * @throws ClientException
      */
-    public function delete(): Message
+    public function delete(string $action): Message
     {
         $url = $this->parser->url('/:action', [
+            'action' => $action,
         ]);
 
         $options = [
