@@ -1,0 +1,24 @@
+{
+    "name": "fusio/worker-sdk",
+    "description": "Fusio worker SDK",
+    "homepage": "https://www.fusio-project.org",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Christoph Kappestein",
+            "email": "christoph.kappestein@gmail.com",
+            "homepage": "https://chrisk.app"
+        }
+    ],
+    "require": {
+        "sdkgen/client": "^1.0"
+    },
+    "require-dev": {
+        "vimeo/psalm": "^5.1"
+    },
+    "autoload": {
+        "psr-4": {
+            "Fusio\\Worker\\": "src/"
+        }
+    }
+}
