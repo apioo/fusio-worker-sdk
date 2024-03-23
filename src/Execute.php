@@ -12,9 +12,9 @@ use PSX\Schema\Attribute\Description;
 class Execute implements \JsonSerializable, \PSX\Record\RecordableInterface
 {
     /**
-     * @var \PSX\Record\Record<string>|null
+     * @var \PSX\Record\Record<ExecuteConnection>|null
      */
-    #[Description('A map of available connections, the value is encrypted with the Fusio project key and must be decrypted by the client')]
+    #[Description('A map of available connections')]
     protected ?\PSX\Record\Record $connections = null;
     #[Description('')]
     protected ?ExecuteRequest $request = null;

@@ -11,6 +11,8 @@ use PSX\Schema\Attribute\Description;
 #[Description('')]
 class Response implements \JsonSerializable, \PSX\Record\RecordableInterface
 {
+    #[Description('')]
+    protected ?ResponseHTTP $response = null;
     /**
      * @var array<ResponseEvent>|null
      */
@@ -21,15 +23,14 @@ class Response implements \JsonSerializable, \PSX\Record\RecordableInterface
      */
     #[Description('Optional log entries which are generated on invocation of this action')]
     protected ?array $logs = null;
-    #[Description('')]
-    protected ?int $statusCode = null;
-    /**
-     * @var \PSX\Record\Record<string>|null
-     */
-    #[Description('')]
-    protected ?\PSX\Record\Record $headers = null;
-    #[Description('')]
-    protected mixed $body = null;
+    public function setResponse(?ResponseHTTP $response) : void
+    {
+        $this->response = $response;
+    }
+    public function getResponse() : ?ResponseHTTP
+    {
+        return $this->response;
+    }
     /**
      * @param array<ResponseEvent>|null $events
      */
@@ -58,39 +59,13 @@ class Response implements \JsonSerializable, \PSX\Record\RecordableInterface
     {
         return $this->logs;
     }
-    public function setStatusCode(?int $statusCode) : void
-    {
-        $this->statusCode = $statusCode;
-    }
-    public function getStatusCode() : ?int
-    {
-        return $this->statusCode;
-    }
-    public function setHeaders(?\PSX\Record\Record $headers) : void
-    {
-        $this->headers = $headers;
-    }
-    public function getHeaders() : ?\PSX\Record\Record
-    {
-        return $this->headers;
-    }
-    public function setBody(mixed $body) : void
-    {
-        $this->body = $body;
-    }
-    public function getBody() : mixed
-    {
-        return $this->body;
-    }
     public function toRecord() : \PSX\Record\RecordInterface
     {
         /** @var \PSX\Record\Record<mixed> $record */
         $record = new \PSX\Record\Record();
+        $record->put('response', $this->response);
         $record->put('events', $this->events);
         $record->put('logs', $this->logs);
-        $record->put('statusCode', $this->statusCode);
-        $record->put('headers', $this->headers);
-        $record->put('body', $this->body);
         return $record;
     }
     public function jsonSerialize() : object
