@@ -1,0 +1,9 @@
+{
+  "type": "client-php",
+  "require": {
+    "fusio/worker": {
+      "target": "./src",
+      "namespace": "Fusio\\Worker"
+    }
+  }
+}

@@ -84,8 +84,6 @@ class Client extends ClientAbstract
             $data = (string) $e->getResponse()->getBody();
 
             switch ($e->getResponse()->getStatusCode()) {
-                case 404:
-                    throw new MessageException($this->parser->parse($data, Message::class));
                 case 500:
                     throw new MessageException($this->parser->parse($data, Message::class));
                 default:
@@ -178,8 +176,8 @@ class Client extends ClientAbstract
 
 
 
-    public static function build(CredentialsInterface $credentials): self
+    public static function build(string $clientId, string $clientSecret, ?TokenStoreInterface $tokenStore = null, ?array $scopes = null): self
     {
-        return new self('https://api.typehub.cloud/', $credentials);
+        return new self('https://api.typehub.cloud/', new Credentials\OAuth2($clientId, $clientSecret, 'https://api.typehub.cloud/authorization/token', '', $tokenStore, $scopes));
     }
 }
