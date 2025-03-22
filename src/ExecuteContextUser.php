@@ -23,55 +23,55 @@ class ExecuteContextUser implements \JsonSerializable, \PSX\Record\RecordableInt
     protected ?string $email = null;
     #[Description('')]
     protected ?int $points = null;
-    public function setAnonymous(?bool $anonymous) : void
+    public function setAnonymous(?bool $anonymous): void
     {
         $this->anonymous = $anonymous;
     }
-    public function getAnonymous() : ?bool
+    public function getAnonymous(): ?bool
     {
         return $this->anonymous;
     }
-    public function setId(?int $id) : void
+    public function setId(?int $id): void
     {
         $this->id = $id;
     }
-    public function getId() : ?int
+    public function getId(): ?int
     {
         return $this->id;
     }
-    public function setPlanId(?string $planId) : void
+    public function setPlanId(?string $planId): void
     {
         $this->planId = $planId;
     }
-    public function getPlanId() : ?string
+    public function getPlanId(): ?string
     {
         return $this->planId;
     }
-    public function setName(?string $name) : void
+    public function setName(?string $name): void
     {
         $this->name = $name;
     }
-    public function getName() : ?string
+    public function getName(): ?string
     {
         return $this->name;
     }
-    public function setEmail(?string $email) : void
+    public function setEmail(?string $email): void
     {
         $this->email = $email;
     }
-    public function getEmail() : ?string
+    public function getEmail(): ?string
     {
         return $this->email;
     }
-    public function setPoints(?int $points) : void
+    public function setPoints(?int $points): void
     {
         $this->points = $points;
     }
-    public function getPoints() : ?int
+    public function getPoints(): ?int
     {
         return $this->points;
     }
-    public function toRecord() : \PSX\Record\RecordInterface
+    public function toRecord(): \PSX\Record\RecordInterface
     {
         /** @var \PSX\Record\Record<mixed> $record */
         $record = new \PSX\Record\Record();
@@ -83,7 +83,7 @@ class ExecuteContextUser implements \JsonSerializable, \PSX\Record\RecordableInt
         $record->put('points', $this->points);
         return $record;
     }
-    public function jsonSerialize() : object
+    public function jsonSerialize(): object
     {
         return (object) $this->toRecord()->getAll();
     }

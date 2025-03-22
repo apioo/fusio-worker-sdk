@@ -20,31 +20,37 @@ class ExecuteRequest implements \JsonSerializable, \PSX\Record\RecordableInterfa
     protected mixed $payload = null;
     #[Description('')]
     protected ?ExecuteRequestContext $context = null;
-    public function setArguments(?\PSX\Record\Record $arguments) : void
+    /**
+     * @param \PSX\Record\Record<string>|null $arguments
+     */
+    public function setArguments(?\PSX\Record\Record $arguments): void
     {
         $this->arguments = $arguments;
     }
-    public function getArguments() : ?\PSX\Record\Record
+    /**
+     * @return \PSX\Record\Record<string>|null
+     */
+    public function getArguments(): ?\PSX\Record\Record
     {
         return $this->arguments;
     }
-    public function setPayload(mixed $payload) : void
+    public function setPayload(mixed $payload): void
     {
         $this->payload = $payload;
     }
-    public function getPayload() : mixed
+    public function getPayload(): mixed
     {
         return $this->payload;
     }
-    public function setContext(?ExecuteRequestContext $context) : void
+    public function setContext(?ExecuteRequestContext $context): void
     {
         $this->context = $context;
     }
-    public function getContext() : ?ExecuteRequestContext
+    public function getContext(): ?ExecuteRequestContext
     {
         return $this->context;
     }
-    public function toRecord() : \PSX\Record\RecordInterface
+    public function toRecord(): \PSX\Record\RecordInterface
     {
         /** @var \PSX\Record\Record<mixed> $record */
         $record = new \PSX\Record\Record();
@@ -53,7 +59,7 @@ class ExecuteRequest implements \JsonSerializable, \PSX\Record\RecordableInterfa
         $record->put('context', $this->context);
         return $record;
     }
-    public function jsonSerialize() : object
+    public function jsonSerialize(): object
     {
         return (object) $this->toRecord()->getAll();
     }

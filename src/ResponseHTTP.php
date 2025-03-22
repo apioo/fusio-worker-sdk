@@ -20,31 +20,37 @@ class ResponseHTTP implements \JsonSerializable, \PSX\Record\RecordableInterface
     protected ?\PSX\Record\Record $headers = null;
     #[Description('')]
     protected mixed $body = null;
-    public function setStatusCode(?int $statusCode) : void
+    public function setStatusCode(?int $statusCode): void
     {
         $this->statusCode = $statusCode;
     }
-    public function getStatusCode() : ?int
+    public function getStatusCode(): ?int
     {
         return $this->statusCode;
     }
-    public function setHeaders(?\PSX\Record\Record $headers) : void
+    /**
+     * @param \PSX\Record\Record<string>|null $headers
+     */
+    public function setHeaders(?\PSX\Record\Record $headers): void
     {
         $this->headers = $headers;
     }
-    public function getHeaders() : ?\PSX\Record\Record
+    /**
+     * @return \PSX\Record\Record<string>|null
+     */
+    public function getHeaders(): ?\PSX\Record\Record
     {
         return $this->headers;
     }
-    public function setBody(mixed $body) : void
+    public function setBody(mixed $body): void
     {
         $this->body = $body;
     }
-    public function getBody() : mixed
+    public function getBody(): mixed
     {
         return $this->body;
     }
-    public function toRecord() : \PSX\Record\RecordInterface
+    public function toRecord(): \PSX\Record\RecordInterface
     {
         /** @var \PSX\Record\Record<mixed> $record */
         $record = new \PSX\Record\Record();
@@ -53,7 +59,7 @@ class ResponseHTTP implements \JsonSerializable, \PSX\Record\RecordableInterface
         $record->put('body', $this->body);
         return $record;
     }
-    public function jsonSerialize() : object
+    public function jsonSerialize(): object
     {
         return (object) $this->toRecord()->getAll();
     }

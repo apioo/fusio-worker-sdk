@@ -32,55 +32,73 @@ class ExecuteRequestContext implements \JsonSerializable, \PSX\Record\Recordable
      */
     #[Description('')]
     protected ?\PSX\Record\Record $headers = null;
-    public function setType(?string $type) : void
+    public function setType(?string $type): void
     {
         $this->type = $type;
     }
-    public function getType() : ?string
+    public function getType(): ?string
     {
         return $this->type;
     }
-    public function setUriFragments(?\PSX\Record\Record $uriFragments) : void
+    /**
+     * @param \PSX\Record\Record<string>|null $uriFragments
+     */
+    public function setUriFragments(?\PSX\Record\Record $uriFragments): void
     {
         $this->uriFragments = $uriFragments;
     }
-    public function getUriFragments() : ?\PSX\Record\Record
+    /**
+     * @return \PSX\Record\Record<string>|null
+     */
+    public function getUriFragments(): ?\PSX\Record\Record
     {
         return $this->uriFragments;
     }
-    public function setMethod(?string $method) : void
+    public function setMethod(?string $method): void
     {
         $this->method = $method;
     }
-    public function getMethod() : ?string
+    public function getMethod(): ?string
     {
         return $this->method;
     }
-    public function setPath(?string $path) : void
+    public function setPath(?string $path): void
     {
         $this->path = $path;
     }
-    public function getPath() : ?string
+    public function getPath(): ?string
     {
         return $this->path;
     }
-    public function setQueryParameters(?\PSX\Record\Record $queryParameters) : void
+    /**
+     * @param \PSX\Record\Record<string>|null $queryParameters
+     */
+    public function setQueryParameters(?\PSX\Record\Record $queryParameters): void
     {
         $this->queryParameters = $queryParameters;
     }
-    public function getQueryParameters() : ?\PSX\Record\Record
+    /**
+     * @return \PSX\Record\Record<string>|null
+     */
+    public function getQueryParameters(): ?\PSX\Record\Record
     {
         return $this->queryParameters;
     }
-    public function setHeaders(?\PSX\Record\Record $headers) : void
+    /**
+     * @param \PSX\Record\Record<string>|null $headers
+     */
+    public function setHeaders(?\PSX\Record\Record $headers): void
     {
         $this->headers = $headers;
     }
-    public function getHeaders() : ?\PSX\Record\Record
+    /**
+     * @return \PSX\Record\Record<string>|null
+     */
+    public function getHeaders(): ?\PSX\Record\Record
     {
         return $this->headers;
     }
-    public function toRecord() : \PSX\Record\RecordInterface
+    public function toRecord(): \PSX\Record\RecordInterface
     {
         /** @var \PSX\Record\Record<mixed> $record */
         $record = new \PSX\Record\Record();
@@ -92,7 +110,7 @@ class ExecuteRequestContext implements \JsonSerializable, \PSX\Record\Recordable
         $record->put('headers', $this->headers);
         return $record;
     }
-    public function jsonSerialize() : object
+    public function jsonSerialize(): object
     {
         return (object) $this->toRecord()->getAll();
     }

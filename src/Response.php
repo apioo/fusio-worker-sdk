@@ -23,43 +23,43 @@ class Response implements \JsonSerializable, \PSX\Record\RecordableInterface
      */
     #[Description('Optional log entries which are generated on invocation of this action')]
     protected ?array $logs = null;
-    public function setResponse(?ResponseHTTP $response) : void
+    public function setResponse(?ResponseHTTP $response): void
     {
         $this->response = $response;
     }
-    public function getResponse() : ?ResponseHTTP
+    public function getResponse(): ?ResponseHTTP
     {
         return $this->response;
     }
     /**
      * @param array<ResponseEvent>|null $events
      */
-    public function setEvents(?array $events) : void
+    public function setEvents(?array $events): void
     {
         $this->events = $events;
     }
     /**
      * @return array<ResponseEvent>|null
      */
-    public function getEvents() : ?array
+    public function getEvents(): ?array
     {
         return $this->events;
     }
     /**
      * @param array<ResponseLog>|null $logs
      */
-    public function setLogs(?array $logs) : void
+    public function setLogs(?array $logs): void
     {
         $this->logs = $logs;
     }
     /**
      * @return array<ResponseLog>|null
      */
-    public function getLogs() : ?array
+    public function getLogs(): ?array
     {
         return $this->logs;
     }
-    public function toRecord() : \PSX\Record\RecordInterface
+    public function toRecord(): \PSX\Record\RecordInterface
     {
         /** @var \PSX\Record\Record<mixed> $record */
         $record = new \PSX\Record\Record();
@@ -68,7 +68,7 @@ class Response implements \JsonSerializable, \PSX\Record\RecordableInterface
         $record->put('logs', $this->logs);
         return $record;
     }
-    public function jsonSerialize() : object
+    public function jsonSerialize(): object
     {
         return (object) $this->toRecord()->getAll();
     }

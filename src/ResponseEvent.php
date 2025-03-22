@@ -15,23 +15,23 @@ class ResponseEvent implements \JsonSerializable, \PSX\Record\RecordableInterfac
     protected ?string $eventName = null;
     #[Description('')]
     protected mixed $data = null;
-    public function setEventName(?string $eventName) : void
+    public function setEventName(?string $eventName): void
     {
         $this->eventName = $eventName;
     }
-    public function getEventName() : ?string
+    public function getEventName(): ?string
     {
         return $this->eventName;
     }
-    public function setData(mixed $data) : void
+    public function setData(mixed $data): void
     {
         $this->data = $data;
     }
-    public function getData() : mixed
+    public function getData(): mixed
     {
         return $this->data;
     }
-    public function toRecord() : \PSX\Record\RecordInterface
+    public function toRecord(): \PSX\Record\RecordInterface
     {
         /** @var \PSX\Record\Record<mixed> $record */
         $record = new \PSX\Record\Record();
@@ -39,7 +39,7 @@ class ResponseEvent implements \JsonSerializable, \PSX\Record\RecordableInterfac
         $record->put('data', $this->data);
         return $record;
     }
-    public function jsonSerialize() : object
+    public function jsonSerialize(): object
     {
         return (object) $this->toRecord()->getAll();
     }

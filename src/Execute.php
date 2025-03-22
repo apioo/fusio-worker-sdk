@@ -20,31 +20,37 @@ class Execute implements \JsonSerializable, \PSX\Record\RecordableInterface
     protected ?ExecuteRequest $request = null;
     #[Description('')]
     protected ?ExecuteContext $context = null;
-    public function setConnections(?\PSX\Record\Record $connections) : void
+    /**
+     * @param \PSX\Record\Record<ExecuteConnection>|null $connections
+     */
+    public function setConnections(?\PSX\Record\Record $connections): void
     {
         $this->connections = $connections;
     }
-    public function getConnections() : ?\PSX\Record\Record
+    /**
+     * @return \PSX\Record\Record<ExecuteConnection>|null
+     */
+    public function getConnections(): ?\PSX\Record\Record
     {
         return $this->connections;
     }
-    public function setRequest(?ExecuteRequest $request) : void
+    public function setRequest(?ExecuteRequest $request): void
     {
         $this->request = $request;
     }
-    public function getRequest() : ?ExecuteRequest
+    public function getRequest(): ?ExecuteRequest
     {
         return $this->request;
     }
-    public function setContext(?ExecuteContext $context) : void
+    public function setContext(?ExecuteContext $context): void
     {
         $this->context = $context;
     }
-    public function getContext() : ?ExecuteContext
+    public function getContext(): ?ExecuteContext
     {
         return $this->context;
     }
-    public function toRecord() : \PSX\Record\RecordInterface
+    public function toRecord(): \PSX\Record\RecordInterface
     {
         /** @var \PSX\Record\Record<mixed> $record */
         $record = new \PSX\Record\Record();
@@ -53,7 +59,7 @@ class Execute implements \JsonSerializable, \PSX\Record\RecordableInterface
         $record->put('context', $this->context);
         return $record;
     }
-    public function jsonSerialize() : object
+    public function jsonSerialize(): object
     {
         return (object) $this->toRecord()->getAll();
     }

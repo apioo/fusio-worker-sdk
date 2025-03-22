@@ -13,22 +13,22 @@ class Update implements \JsonSerializable, \PSX\Record\RecordableInterface
 {
     #[Description('Contains the action worker code')]
     protected ?string $code = null;
-    public function setCode(?string $code) : void
+    public function setCode(?string $code): void
     {
         $this->code = $code;
     }
-    public function getCode() : ?string
+    public function getCode(): ?string
     {
         return $this->code;
     }
-    public function toRecord() : \PSX\Record\RecordInterface
+    public function toRecord(): \PSX\Record\RecordInterface
     {
         /** @var \PSX\Record\Record<mixed> $record */
         $record = new \PSX\Record\Record();
         $record->put('code', $this->code);
         return $record;
     }
-    public function jsonSerialize() : object
+    public function jsonSerialize(): object
     {
         return (object) $this->toRecord()->getAll();
     }

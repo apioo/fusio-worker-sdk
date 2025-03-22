@@ -15,23 +15,23 @@ class About implements \JsonSerializable, \PSX\Record\RecordableInterface
     protected ?string $apiVersion = null;
     #[Description('The programming language of this worker')]
     protected ?string $language = null;
-    public function setApiVersion(?string $apiVersion) : void
+    public function setApiVersion(?string $apiVersion): void
     {
         $this->apiVersion = $apiVersion;
     }
-    public function getApiVersion() : ?string
+    public function getApiVersion(): ?string
     {
         return $this->apiVersion;
     }
-    public function setLanguage(?string $language) : void
+    public function setLanguage(?string $language): void
     {
         $this->language = $language;
     }
-    public function getLanguage() : ?string
+    public function getLanguage(): ?string
     {
         return $this->language;
     }
-    public function toRecord() : \PSX\Record\RecordInterface
+    public function toRecord(): \PSX\Record\RecordInterface
     {
         /** @var \PSX\Record\Record<mixed> $record */
         $record = new \PSX\Record\Record();
@@ -39,7 +39,7 @@ class About implements \JsonSerializable, \PSX\Record\RecordableInterface
         $record->put('language', $this->language);
         return $record;
     }
-    public function jsonSerialize() : object
+    public function jsonSerialize(): object
     {
         return (object) $this->toRecord()->getAll();
     }

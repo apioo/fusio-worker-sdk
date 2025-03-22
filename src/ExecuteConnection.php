@@ -15,23 +15,23 @@ class ExecuteConnection implements \JsonSerializable, \PSX\Record\RecordableInte
     protected ?string $type = null;
     #[Description('')]
     protected ?string $config = null;
-    public function setType(?string $type) : void
+    public function setType(?string $type): void
     {
         $this->type = $type;
     }
-    public function getType() : ?string
+    public function getType(): ?string
     {
         return $this->type;
     }
-    public function setConfig(?string $config) : void
+    public function setConfig(?string $config): void
     {
         $this->config = $config;
     }
-    public function getConfig() : ?string
+    public function getConfig(): ?string
     {
         return $this->config;
     }
-    public function toRecord() : \PSX\Record\RecordInterface
+    public function toRecord(): \PSX\Record\RecordInterface
     {
         /** @var \PSX\Record\Record<mixed> $record */
         $record = new \PSX\Record\Record();
@@ -39,7 +39,7 @@ class ExecuteConnection implements \JsonSerializable, \PSX\Record\RecordableInte
         $record->put('config', $this->config);
         return $record;
     }
-    public function jsonSerialize() : object
+    public function jsonSerialize(): object
     {
         return (object) $this->toRecord()->getAll();
     }
